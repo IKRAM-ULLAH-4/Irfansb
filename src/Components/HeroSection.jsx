@@ -21,15 +21,40 @@ const HeroSection = () => {
     border: 'none',
     fontFamily: 'Poppins, sans-serif',
     transition: 'all 0.4s ease-in-out',
-    letterSpacing: '1.5px', // Increased letter spacing
-    fontSize: '1.3rem', // Slightly larger font
-    padding: '16px 40px', // More padding
-    fontWeight: '700', // Made button text bolder
-    textTransform: 'uppercase', // Added uppercase for prominence
+    letterSpacing: '1.5px', 
+    fontSize: '1.2rem', // Fixed size works well for buttons
+    padding: '14px 35px', 
+    fontWeight: '700', 
+    textTransform: 'uppercase', 
     zIndex: 10,
     position: 'relative',
     borderRadius: '50px',
   };
+  
+  // Responsive Headline Style using clamp()
+  // Syntax: clamp(min-size, preferred-size, max-size)
+  const headlineStyle = {
+    fontFamily: 'Poppins, sans-serif',
+    // Scales from 3rem (min) up to 6rem (max), driven by viewport width
+    fontSize: 'clamp(3rem, 6vw + 1rem, 6rem)', 
+    textShadow: '3px 3px 6px rgba(0, 0, 0, 1)', 
+    lineHeight: '1.1',
+    textTransform: 'uppercase',
+  };
+
+  // Responsive Subheading Style using clamp()
+  const subheadlineStyle = {
+    fontFamily: 'Roboto, sans-serif',
+    // Scales from 1.15rem (min) up to 1.75rem (max)
+    fontSize: 'clamp(1.15rem, 1.5vw + 0.5rem, 1.75rem)',
+    fontWeight: '400',
+    maxWidth: '850px',
+    margin: '0 auto',
+    lineHeight: '1.5',
+    textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)',
+    color: '#F0F0F0',
+  };
+
 
   return (
     <section
@@ -38,7 +63,7 @@ const HeroSection = () => {
       style={{
         backgroundImage: `url(${heroBackground})`,
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed', // Added fixed attachment for parallax effect
+        backgroundAttachment: 'fixed',
         backgroundPosition: 'center center',
         position: 'relative',
         minHeight: '100vh',
@@ -53,7 +78,7 @@ const HeroSection = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))', // Gradient dark overlay
+          background: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5))',
           zIndex: 1,
         }}
       ></div>
@@ -63,37 +88,22 @@ const HeroSection = () => {
         className="container position-relative z-index-2 text-center"
         style={{ zIndex: 2 }}
       >
-        <div className="pt-5 pb-5"> {/* Added padding for vertical centering/spacing */}
+        <div className="pt-5 pb-5"> 
         
-          {/* Heading with maximum impact */}
+          {/* Heading with maximum impact - Using clamp() for scaling */}
           <h1
-            className="display-1 mb-4 fw-bolder animate__animated animate__fadeIn animate__delay-1s"
-            style={{
-              fontFamily: 'Poppins, sans-serif',
-              fontSize: '5.5rem', // Even larger size
-              textShadow: '3px 3px 6px rgba(0, 0, 0, 1)', // Stronger text shadow
-              lineHeight: '1.1',
-              textTransform: 'uppercase',
-            }}
+            className="mb-4 fw-bolder animate__animated animate__fadeIn animate__delay-1s"
+            style={headlineStyle}
           >
             Launch Your Crypto Authority
           </h1>
 
-          {/* Subheading: More punchy and specific */}
+          {/* Subheading: More punchy and specific - Using clamp() for scaling */}
           <p
             className="lead mb-5 animate__animated animate__fadeIn animate__delay-2s"
-            style={{
-              fontFamily: 'Roboto, sans-serif',
-              fontSize: '1.75rem',
-              fontWeight: '400',
-              maxWidth: '850px',
-              margin: '0 auto',
-              lineHeight: '1.5',
-              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.8)',
-              color: '#F0F0F0', // Slightly brighter text
-            }}
+            style={subheadlineStyle}
           >
-            We connect your project with a 140,000+ verified crypto community. Achieve explosive growth with expert-led promotion on Twitter, Telegram, and Binance Live.
+            We connect your project with a **140,000+ verified crypto community**. Achieve explosive growth with expert-led promotion on Twitter, Telegram, and Binance Live.
           </p>
 
           {/* Call to Action Button */}
@@ -101,7 +111,6 @@ const HeroSection = () => {
             href="#start"
             className="btn btn-lg rounded-pill fw-semibold animate__animated animate__zoomIn animate__delay-3s"
             style={buttonStyle}
-            // Add interactive hover effects (requires onMouseOver/onMouseOut in React)
             onMouseOver={(e) => Object.assign(e.currentTarget.style, buttonHoverStyle)}
             onMouseOut={(e) => Object.assign(e.currentTarget.style, buttonStyle)}
           >
